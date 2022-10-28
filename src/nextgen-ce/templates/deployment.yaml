@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextgen-ce
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "nextgen-ce.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: {{.Values.maxSurge}}
+      maxUnavailable: {{.Values.maxUnavailable}}
+  selector:
+    matchLabels:
+      {{- include "nextgen-ce.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "nextgen-ce.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "nextgen-ce.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+      ## TODO Add dependencies here
+      # - name: wait-for-pipeline-service
+      #   image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
+      #   imagePullPolicy: IfNotPresent
+      #   args:
+      #     - "pod"
+      #     - "-lapp=pipeline-service"
+      containers:
+        - name: nextgen-ce
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: {{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: nextgen-ce
+            - secretRef:
+                name: nextgen-ce
+          ##env:
+          ## TODO Add secrets and tokens here
+          {{- toYaml .Values.probes | nindent 10}}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - nextgen-ce
+            topologyKey: "kubernetes.io/hostname"
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

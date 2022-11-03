@@ -34,32 +34,50 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
-      - name: wait-for-mongo
+      #ng-manager should take care of mongo, cg-manager, redis & timescale
+      - name: wait-for-ng-manager
         image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
         imagePullPolicy: IfNotPresent
         args:
           - "pod"
-          - "-lapp=mongodb-replicaset"
-      - name: wait-for-timescale
+          - "-lapp=ng-manager"
+      - name: wait-for-access-control
         image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
         imagePullPolicy: IfNotPresent
         args:
           - "pod"
-          - "-lapp=timescaledb-single-chart"
+          - "-lapp=access-control"
       containers:
         - name: nextgen-ce
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: {{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          livenessProbe:
+            httpGet:
+              path: /ccm/api/health
+              port: {{ .Values.service.port }}
+            initialDelaySeconds: 180
+            failureThreshold: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /ccm/api/health
+              port: {{ .Values.service.port }}
+            initialDelaySeconds: 180
+            failureThreshold: 10
+            periodSeconds: 15
           envFrom:
             - configMapRef:
                 name: nextgen-ce
-            - secretRef:
-                name: nextgen-ce
-          ##env:
-          ## TODO Add secrets and tokens here
-          {{- toYaml .Values.probes | nindent 10}}
+          env:
+            - name : TIMESCALEDB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.timescaleSecret.password.name }}
+                  key: {{ .Values.timescaleSecret.password.key }}
+            - name: TIMESCALE_URI
+              value: 'jdbc:postgresql://timescaledb-single-chart.{{ .Release.Namespace }}:5432/harness'
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

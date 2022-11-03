@@ -1,6 +1,6 @@
 # nextgen-ce
 
-![Version: 0.2.13](https://img.shields.io/badge/Version-0.2.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.773.0](https://img.shields.io/badge/AppVersion-1.773.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.773.0](https://img.shields.io/badge/AppVersion-1.773.0-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -26,14 +26,8 @@ A Helm chart for Kubernetes
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"docker.io"` |  |
 | image.repository | string | `"harness/nextgen-ce-signed"` |  |
-| image.tag | string | `"76000-000"` |  |
-| ingress.annotations | object | `{}` |  |
-| ingress.className | string | `""` |  |
-| ingress.enabled | bool | `false` |  |
-| ingress.hosts[0].host | string | `"chart-example.local"` |  |
-| ingress.hosts[0].paths[0].path | string | `"/"` |  |
-| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
-| ingress.tls | list | `[]` |  |
+| image.tag | string | `"77300-000"` |  |
+| ingress.className | string | `"nginx"` |  |
 | java.memory | int | `2500` |  |
 | java.memoryLimit | int | `600` |  |
 | maxSurge | string | `"100%"` |  |
@@ -47,44 +41,16 @@ A Helm chart for Kubernetes
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| probes.livenessProbe.failureThreshold | int | `5` |  |
-| probes.livenessProbe.httpGet.path | string | `"/health"` |  |
-| probes.livenessProbe.httpGet.port | string | `"http"` |  |
-| probes.livenessProbe.periodSeconds | int | `5` |  |
-| probes.livenessProbe.timeoutSeconds | int | `2` |  |
-| probes.readinessProbe.failureThreshold | int | `5` |  |
-| probes.readinessProbe.httpGet.path | string | `"/health"` |  |
-| probes.readinessProbe.httpGet.port | string | `"http"` |  |
-| probes.readinessProbe.periodSeconds | int | `10` |  |
-| probes.readinessProbe.timeoutSeconds | int | `2` |  |
-| probes.startupProbe.failureThreshold | int | `25` |  |
-| probes.startupProbe.httpGet.path | string | `"/health"` |  |
-| probes.startupProbe.httpGet.port | string | `"http"` |  |
-| probes.startupProbe.periodSeconds | int | `10` |  |
-| probes.startupProbe.timeoutSeconds | int | `2` |  |
 | redislabsCATruststore | string | `"test"` |  |
-| replicaCount | int | `1` |  |
+| replicaCount | int | `2` |  |
 | resources.requests.cpu | int | `1` |  |
 | resources.requests.memory | string | `"3Gi"` |  |
-| s3UploadImage.image.digest | string | `""` |  |
-| s3UploadImage.image.pullPolicy | string | `"IfNotPresent"` |  |
-| s3UploadImage.image.registry | string | `"docker.io"` |  |
-| s3UploadImage.image.repository | string | `"bewithaman/s3"` |  |
-| s3UploadImage.image.tag | string | `"latest"` |  |
 | securityContext | object | `{}` |  |
-| securityImage.image.digest | string | `""` |  |
-| securityImage.image.pullPolicy | string | `"IfNotPresent"` |  |
-| securityImage.image.registry | string | `"docker.io"` |  |
-| securityImage.image.repository | string | `"harness/sto-plugin"` |  |
-| securityImage.image.tag | string | `"latest"` |  |
-| service.grpcport | int | `9979` |  |
-| service.port | int | `7090` |  |
+| service.port | int | `6340` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `false` |  |
 | serviceAccount.name | string | `"harness-default"` |  |
-| stoServiceGlobalToken.key | string | `"stoAppHarnessToken"` |  |
-| stoServiceGlobalToken.name | string | `"harness-secrets"` |  |
 | timescaleSecret.password.key | string | `"timescaledbPostgresPassword"` |  |
 | timescaleSecret.password.name | string | `"harness-secrets"` |  |
 | tolerations | list | `[]` |  |

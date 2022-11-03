@@ -26,22 +26,6 @@ waitForInitContainer:
     tag: "latest"
     digest: ""
 
-securityImage:
-  image:
-    registry: docker.io
-    repository: harness/sto-plugin
-    pullPolicy: IfNotPresent
-    tag: latest
-    digest: ""
-
-s3UploadImage:
-  image:
-    registry: docker.io
-    repository: bewithaman/s3
-    pullPolicy: IfNotPresent
-    tag: latest
-    digest: ""
-
 mongoSecrets:
   userName:
     name: harness-secrets
@@ -85,22 +69,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-probes:
-  livenessProbe:
-    httpGet:
-      path: /ccm/api/health
-      port: 6340
-    initialDelaySeconds: 180
-    failureThreshold: 10
-    periodSeconds: 15
-  readinessProbe:
-    httpGet:
-      path: /ccm/api/health
-      port: 6340
-    initialDelaySeconds: 180
-    failureThreshold: 10
-    periodSeconds: 15
-
 service:
   type: ClusterIP
   port: 6340
@@ -122,10 +90,6 @@ autoscaling:
   maxReplicas: 2
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
-stoServiceGlobalToken:
-  name: harness-secrets
-  key: stoAppHarnessToken
 
 nodeSelector: {}
 

@@ -103,8 +103,7 @@ probes:
 
 service:
   type: ClusterIP
-  port: 7090
-  grpcport: 9979
+  port: 6340
 
 ingress:
   enabled: false

@@ -12,8 +12,5 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
-    - port: {{ .Values.service.grpcport }}
-      targetPort: sto-mgr-grpc
-      name: sto-mgr-grpc
   selector:
     {{- include "nextgen-ce.selectorLabels" . | nindent 4 }}

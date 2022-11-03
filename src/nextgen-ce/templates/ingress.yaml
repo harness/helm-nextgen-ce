@@ -4,19 +4,15 @@ metadata:
   name: nextgen-ce
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /ccm/api
-    {{- if .Values.serviceUpstream}}
-    nginx.ingress.kubernetes.io/service-upstream: "true"
-    nginx.ingress.kubernetes.io/upstream-vhost: {{.Values.name}}.{{.Values.namespace.name}}.svc.cluster.local
-  {{- end}}
   spec:
-    ingressClassName: {{.Values.ingressClass}}
+    ingressClassName: {{.Values.ingress.className}}
     rules:
     - http:
       paths:
-      - path: {{.Values.pathPrefix}}/ccm/api
+      - path: ccm/api
         pathType: ImplementationSpecific
         backend:
           service:
-            name: {{.Values.name}}
+            name: nextgen-ce
             port:
               number: 6340

@@ -19,15 +19,15 @@ maxSurge: 100%
 maxUnavailable: 0
 
 java:
-  memory: 2500
-  memoryLimit: 600
+  memory: "4096m"
+  memoryLimit: "4096m"
 
 image:
   registry: docker.io
-  repository: harness/nextgen-ce-signed
+  repository: harness/ce-nextgen-signed
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "77300-000"
+  tag: "77300"
   digest: ""
 
 waitForInitContainer:
@@ -86,3 +86,11 @@ tolerations: []
 affinity: {}
 
 CE_AWS_TEMPLATE_URL: dummy
+
+resources:
+  limits:
+    cpu: 2
+    memory: "5120Mi"
+  requests:
+    cpu: 2
+    memory: "5120Mi"

@@ -71,8 +71,6 @@ spec:
             - configMapRef:
                 name: nextgen-ce
           env:
-            - name: EVENTS_MONGO_DB_URL
-              value: {{ include "harnesscommon.database.mongo" (dict "database" "events" "context" $) }}
             - name: MONGODB_USER
               valueFrom:
                 secretKeyRef:
@@ -83,6 +81,8 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mongoSecrets.password.name }}
                   key: {{ .Values.mongoSecrets.password.key }}
+            - name: EVENTS_MONGO_DB_URL
+              value: {{ include "harnesscommon.database.mongo" (dict "database" "events" "context" $) }}
             - name : TIMESCALEDB_PASSWORD
               valueFrom:
                 secretKeyRef:

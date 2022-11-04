@@ -73,12 +73,12 @@ spec:
           env:
             - name: EVENTS_MONGO_DB_URL
               value: {{ include "harnesscommon.database.mongo" (dict "database" "events" "context" $) }}
-            - name: MONGO_USER
+            - name: MONGODB_USER
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.mongoSecrets.userName.name }}
                   key: {{ .Values.mongoSecrets.userName.key }}
-            - name: MONGO_PASSWORD
+            - name: MONGODB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.mongoSecrets.password.name }}

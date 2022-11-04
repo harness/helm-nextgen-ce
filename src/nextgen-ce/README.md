@@ -19,7 +19,6 @@ A Helm chart for Kubernetes
 | autoscaling.maxReplicas | int | `2` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| defaultInternalImageConnector | string | `"test"` |  |
 | fullnameOverride | string | `""` |  |
 | global.loadbalancerURL | string | `"https://test"` |  |
 | image.digest | string | `""` |  |
@@ -37,14 +36,10 @@ A Helm chart for Kubernetes
 | mongoSecrets.userName.key | string | `"mongodbUsername"` |  |
 | mongoSecrets.userName.name | string | `"harness-secrets"` |  |
 | nameOverride | string | `""` |  |
-| ngServiceAccount | string | `"test"` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| redislabsCATruststore | string | `"test"` |  |
 | replicaCount | int | `2` |  |
-| resources.requests.cpu | int | `1` |  |
-| resources.requests.memory | string | `"3Gi"` |  |
 | securityContext | object | `{}` |  |
 | service.port | int | `6340` |  |
 | service.type | string | `"ClusterIP"` |  |

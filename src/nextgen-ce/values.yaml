@@ -3,13 +3,17 @@
 # Declare variables to be passed into your templates.
 global:
   loadbalancerURL: "https://test"
+
 replicaCount: 2
+
 maxSurge: 100%
+
 maxUnavailable: 0
 
 java:
   memory: 2500
   memoryLimit: 600
+
 image:
   registry: docker.io
   repository: harness/nextgen-ce-signed
@@ -42,32 +46,16 @@ timescaleSecret:
 nameOverride: ""
 fullnameOverride: ""
 
-ngServiceAccount: "test"
-redislabsCATruststore: "test"
-
-defaultInternalImageConnector: "test"
-
 serviceAccount:
-  # Specifies whether a service account should be created
   create: false
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: "harness-default"
 
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -75,14 +63,6 @@ service:
 
 ingress:
   className: nginx
-
-resources:
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  requests:
-    cpu: 1
-    memory: 3Gi
 
 autoscaling:
   enabled: true

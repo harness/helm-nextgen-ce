@@ -87,6 +87,8 @@ affinity: {}
 
 CE_AWS_TEMPLATE_URL: dummy
 
+DEFAULT_NG_NAMESPACE: 
+
 resources:
   limits:
     cpu: 2

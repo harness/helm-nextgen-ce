@@ -35,9 +35,9 @@ data:
   AWS_GOV_CLOUD_REGION_NAME: "us-gov-west-1" #TODO
   SEGMENT_ENABLED: "false"
   AUDIT_ENABLED: "true"
-  AUDIT_CLIENT_BASEURL: "http://platform-service.{{.Values.DEFAULT_NG_NAMESPACE}}.svc.cluster.local:9005/api/"
-  NOTIFICATION_BASE_URL: "http://platform-service.{{.Values.DEFAULT_NG_NAMESPACE}}.svc.cluster.local:9005/api/"
-  ACCESS_CONTROL_BASE_URL: "http://accesscontrol-service.{{.Values.DEFAULT_NG_NAMESPACE}}.svc.cluster.local:9006/api/"
+  AUDIT_CLIENT_BASEURL: "http://platform-service.{{ .Release.Namespace }}.svc.cluster.local:9005/api/"
+  NOTIFICATION_BASE_URL: "http://platform-service.{{ .Release.Namespace }}.svc.cluster.local:9005/api/"
+  ACCESS_CONTROL_BASE_URL: "http://accesscontrol-service.{{ .Release.Namespace }}.svc.cluster.local:9006/api/"
   ACCESS_CONTROL_ENABLED: "true"
   MOCK_ACCESS_CONTROL_SERVICE: "false"
   MEMORY: {{ .Values.java.memory | quote }}

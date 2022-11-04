@@ -17,50 +17,31 @@ data:
   EVENTS_FRAMEWORK_USE_SENTINEL: "true"
   EVENTS_FRAMEWORK_SENTINEL_MASTER_NAME: "harness-redis"
   EVENTS_FRAMEWORK_REDIS_SENTINELS: "redis://redis-sentinel-harness-announce-0.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-1.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-2.{{ .Release.Namespace }}:26379"
-  EVENTS_FRAMEWORK_ENV_NAMESPACE: {{.Values.EVENTS_FRAMEWORK_ENV_NAMESPACE}} ##TODO
-  EVENTS_FRAMEWORK_REDIS_PASSWORD: {{.Values.EVENTS_FRAMEWORK_REDIS_PASSWORD | quote}} #TODO
-  EVENTS_FRAMEWORK_REDIS_SSL_ENABLED: "false" #TODO
-  EVENTS_FRAMEWORK_REDIS_SSL_CA_TRUST_STORE_PATH: "/opt/harness/svc/redis_labs_ca_truststore"
-  EVENTS_FRAMEWORK_REDIS_SSL_CA_TRUST_STORE_PASSWORD: {{.Values.EVENTS_FRAMEWORK_REDIS_SSL_CA_TRUST_STORE_PASSWORD}} ##TODO
-  GOOGLE_CREDENTIALS_PATH: "/opt/harness/svc/ceng_gcp_credentials.json"
-  GOOGLE_APPLICATION_CREDENTIALS: "/opt/harness/svc/ceng_gcp_credentials.json"
-  CE_GCP_CREDENTIALS_PATH: "/opt/harness/svc/ceng_gcp_credentials.json"
+  EVENTS_FRAMEWORK_ENV_NAMESPACE: {{ .Release.Namespace }}
+  EVENTS_FRAMEWORK_REDIS_SSL_ENABLED: "false"
+  GOOGLE_CREDENTIALS_PATH: "/opt/harness/svc/ceng_gcp_credentials.json" ##TODO
+  GOOGLE_APPLICATION_CREDENTIALS: "/opt/harness/svc/ceng_gcp_credentials.json" #TODO
+  CE_GCP_CREDENTIALS_PATH: "/opt/harness/svc/ceng_gcp_credentials.json" #TODO
   STACK_DRIVER_LOGGING_ENABLED: "false"
   EVENTS_MONGO_INDEX_MANAGER_MODE: "MANUAL" ##TODO
-  GCP_PROJECT_ID: "ce-prod-274307"
-  AZURE_APP_CLIENT_ID: "0211763d-24fb-4d63-865d-92f86f77e908"
+  GCP_PROJECT_ID: "ce-prod-274307" ##TODO
+  AZURE_APP_CLIENT_ID: "0211763d-24fb-4d63-865d-92f86f77e908" ##TODO
   AZURE_ENABLE_FILE_CHECK_AT_SOURCE: "true"
-  DEPLOYMENT_CLUSTER_NAME: {{.Values.DEPLOYMENT_CLUSTER_NAME | quote}} ##TODO
-  AWS_ACCOUNT_ID: 891928451355
-  AWS_TEMPLATE_LINK: "https://continuous-efficiency-prod.s3.us-east-2.amazonaws.com/setup/ngv1/HarnessAWSTemplate.yaml"
-  AWS_DESTINATION_BUCKET: "ce-customer-billing-data-prod"
-  AWS_GOV_CLOUD_ACCOUNT_ID: 147449478367
-  AWS_GOV_CLOUD_TEMPLATE_LINK: "https://continuous-efficiency.s3.us-east-2.amazonaws.com/setup/v1/ng/HarnessAWSTemplate.yaml"
-  AWS_GOV_CLOUD_REGION_NAME: "us-gov-west-1"
-  FEATURE_FLAG_SYSTEM: "CF"
-  BASE_PATH_PREFIX: {{.Values.basePathPrefix}} ##TODO
-  HOSTNAME: {{.Values.hostName}} ##TODO
-  ENFORCEMENT_CHECK_ENABLED: "true"
-  SEGMENT_ENABLED: "true"
-  SEGMENT_APIKEY: {{.Values.SEGMENT_APIKEY | quote}} ##TODO
+  AWS_ACCOUNT_ID: 891928451355 #TODO
+  AWS_TEMPLATE_LINK: "https://continuous-efficiency-prod.s3.us-east-2.amazonaws.com/setup/ngv1/HarnessAWSTemplate.yaml" #TODO
+  AWS_DESTINATION_BUCKET: "ce-customer-billing-data-prod" #TODO
+  AWS_GOV_CLOUD_ACCOUNT_ID: 147449478367 #TODO
+  AWS_GOV_CLOUD_TEMPLATE_LINK: "https://continuous-efficiency.s3.us-east-2.amazonaws.com/setup/v1/ng/HarnessAWSTemplate.yaml" #TODO
+  AWS_GOV_CLOUD_REGION_NAME: "us-gov-west-1" #TODO
+  SEGMENT_ENABLED: "false"
   AUDIT_ENABLED: "true"
-  AUDIT_CLIENT_BASEURL: {{.Values.AUDIT_CLIENT_BASEURL | quote}} ##TODO
+  AUDIT_CLIENT_BASEURL: "http://platform-service.{{.Values.DEFAULT_NG_NAMESPACE}}.svc.cluster.local:9005/api/"
   NOTIFICATION_BASE_URL: "http://platform-service.{{.Values.DEFAULT_NG_NAMESPACE}}.svc.cluster.local:9005/api/"
   ACCESS_CONTROL_BASE_URL: "http://accesscontrol-service.{{.Values.DEFAULT_NG_NAMESPACE}}.svc.cluster.local:9006/api/"
   ACCESS_CONTROL_ENABLED: "true"
   MOCK_ACCESS_CONTROL_SERVICE: "false"
   MEMORY: {{ .Values.java.memory | quote }}
-  ENABLE_APPDYNAMICS: "true"
-  APPDYNAMICS_AGENT_ACCOUNT_NAME: "harness-prod"
-  APPDYNAMICS_AGENT_APPLICATION_NAME: {{.Values.APPDYNAMICS_AGENT_APPLICATION_NAME | quote}}
-  APPDYNAMICS_AGENT_TIER_NAME: "nextgen-ce"
-  APPDYNAMICS_CONTROLLER_HOST_NAME: {{.Values.APPDYNAMICS_CONTROLLER_HOST_NAME | quote}}
-  APPDYNAMICS_CONTROLLER_PORT: 443
-  APPDYNAMICS_CONTROLLER_SSL_ENABLED: "true"
-  APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY: {{.Values.APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY}}
-  ENABLE_OPENTELEMETRY: {{.Values.ENABLE_OPENTELEMETRY | quote}}
-  OTEL_EXPORTER_OTLP_ENDPOINT: {{.Values.OTEL_EXPORTER_OTLP_ENDPOINT | quote}}
-  OTEL_SERVICE_NAME: "nextgen-ce"
+  ENABLE_APPDYNAMICS: "false"
   JWT_AUTH_SECRET: IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM
   NEXT_GEN_MANAGER_SECRET: IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM
   JWT_IDENTITY_SERVICE_SECRET: HVSKUYqD4e5Rxu12hFDdCJKGM64sxgEynvdDhaOHaTHhwwn0K4Ttr0uoOxSsEVYNrUU=

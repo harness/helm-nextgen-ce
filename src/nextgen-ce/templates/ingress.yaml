@@ -15,4 +15,4 @@ metadata:
           service:
             name: nextgen-ce
             port:
-              number: 6340
+              number: {{ .Values.service.port }}

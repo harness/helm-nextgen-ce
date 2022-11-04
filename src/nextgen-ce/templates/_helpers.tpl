@@ -70,10 +70,3 @@ Create the name of the service account to use
 - { name: APP_DATABASE_DATASOURCE, value: "{{ printf "postgres://postgres:$(DB_PASSWORD)@postgres:5432" }}" }
 - { name: APP_DB_MIGRATION_DATASOURCE, value: "{{ printf "postgres://postgres:$(DB_PASSWORD)@postgres:5432" }}" }
 {{- end }}
-
-{{/*
-Create the name of the security image to use
-*/}}
-{{- define "nextgen-ce.securityImage" -}}
-{{ include "common.images.image" (dict "imageRoot" .Values.securityImage.image "global" .Values.global) }}
-{{- end }}

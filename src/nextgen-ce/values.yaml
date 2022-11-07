@@ -50,9 +50,13 @@ timescaleSecret:
   password:
     name: harness-secrets
     key: timescaledbPostgresPassword
-secret:
+
+awsSecret:
   AWS_ACCESS_KEY: ""
   AWS_SECRET_KEY: ""
+  AWS_ACCOUNT_ID: ""
+  AWS_DESTINATION_BUCKET: ""
+  AWS_TEMPLATE_LINK: ""
 
 nameOverride: ""
 fullnameOverride: ""

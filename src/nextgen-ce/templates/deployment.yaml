@@ -70,6 +70,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: nextgen-ce
+            - secretRef:
+                name: nextgen-ce
           env:
             - name: MONGODB_USER
               valueFrom:

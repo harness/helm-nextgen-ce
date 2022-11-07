@@ -70,7 +70,11 @@ Create the name of the service account to use
 - { name: APP_DATABASE_DATASOURCE, value: "{{ printf "postgres://postgres:$(DB_PASSWORD)@postgres:5432" }}" }
 - { name: APP_DB_MIGRATION_DATASOURCE, value: "{{ printf "postgres://postgres:$(DB_PASSWORD)@postgres:5432" }}" }
 {{- end }}
+
 {{- define "nextgen-ce.generateSecrets" }}
-    AWS_ACCESS_KEY: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_ACCESS_KEY" "providedValues" (list "secret.AWS_ACCESS_KEY") "length" 10 "context" $) }}
-    AWS_SECRET_KEY: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_SECRET_KEY" "providedValues" (list "secret.AWS_SECRET_KEY") "length" 10 "context" $) }}
+    AWS_ACCESS_KEY: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_ACCESS_KEY" "providedValues" (list "awsSecret.AWS_ACCESS_KEY") "length" 10 "context" $) }}
+    AWS_SECRET_KEY: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_SECRET_KEY" "providedValues" (list "awsSecret.AWS_SECRET_KEY") "length" 10 "context" $) }}
+    AWS_ACCOUNT_ID: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_ACCOUNT_ID" "providedValues" (list "awsSecret.AWS_ACCOUNT_ID") "length" 10 "context" $) }}
+    AWS_DESTINATION_BUCKET: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_DESTINATION_BUCKET" "providedValues" (list "awsSecret.AWS_DESTINATION_BUCKET") "length" 10 "context" $) }}
+    AWS_TEMPLATE_LINK: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_TEMPLATE_LINK" "providedValues" (list "awsSecret.AWS_TEMPLATE_LINK") "length" 10 "context" $) }}
 {{- end }}

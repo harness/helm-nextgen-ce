@@ -78,3 +78,7 @@ Create the name of the service account to use
     AWS_DESTINATION_BUCKET: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_DESTINATION_BUCKET" "providedValues" (list "awsSecret.AWS_DESTINATION_BUCKET") "length" 10 "context" $) }}
     AWS_TEMPLATE_LINK: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_TEMPLATE_LINK" "providedValues" (list "awsSecret.AWS_TEMPLATE_LINK") "length" 10 "context" $) }}
 {{- end }}
+
+{{- define "nextgen-ce.generateMountSecrets" }}
+    ceng-gcp-credentials: {{ include "common.secrets.passwords.manage" (dict "secret" "ceng-secret-mount" "key" "ceng-gcp-credentials" "providedValues" (list "ceng-gcp-credentials") "length" 10 "context" $) }}
+{{- end }}

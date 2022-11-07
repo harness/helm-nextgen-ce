@@ -94,6 +94,16 @@ spec:
               value: postgres
             - name: TIMESCALEDB_URI
               value: 'jdbc:postgresql://timescaledb-single-chart.{{ .Release.Namespace }}:5432/harness'
+          volumeMounts:
+          - name: secret-mount
+            mountPath: /opt/harness/svc
+      volumes:
+      - name: secret-mount
+        secret:
+          secretName: ceng-secret-mount
+          items:
+          - key: ceng-gcp-credentials
+            path: ceng_gcp_credentials.json
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

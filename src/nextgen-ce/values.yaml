@@ -58,6 +58,8 @@ awsSecret:
   AWS_DESTINATION_BUCKET: ""
   AWS_TEMPLATE_LINK: ""
 
+ceng-gcp-credentials: ""
+
 nameOverride: ""
 fullnameOverride: ""
 

@@ -70,3 +70,7 @@ Create the name of the service account to use
 - { name: APP_DATABASE_DATASOURCE, value: "{{ printf "postgres://postgres:$(DB_PASSWORD)@postgres:5432" }}" }
 - { name: APP_DB_MIGRATION_DATASOURCE, value: "{{ printf "postgres://postgres:$(DB_PASSWORD)@postgres:5432" }}" }
 {{- end }}
+{{- define "nextgen-ce.generateSecrets" }}
+    AWS_ACCESS_KEY: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_ACCESS_KEY" "providedValues" (list "secret.AWS_ACCESS_KEY") "length" 10 "context" $) }}
+    AWS_SECRET_KEY: {{ include "common.secrets.passwords.manage" (dict "secret" "nextgen-ce" "key" "AWS_SECRET_KEY" "providedValues" (list "secret.AWS_SECRET_KEY") "length" 10 "context" $) }}
+{{- end }}

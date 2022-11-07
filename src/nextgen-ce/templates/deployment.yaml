@@ -73,7 +73,7 @@ spec:
             - secretRef:
                 name: nextgen-ce
           env:
-            - name: MONGODB_USER
+            - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.mongoSecrets.userName.name }}

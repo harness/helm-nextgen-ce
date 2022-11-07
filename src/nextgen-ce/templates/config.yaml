@@ -37,7 +37,7 @@ data:
   AUDIT_ENABLED: "true"
   AUDIT_CLIENT_BASEURL: "http://platform-service.{{ .Release.Namespace }}.svc.cluster.local:9005/api/"
   NOTIFICATION_BASE_URL: "http://platform-service.{{ .Release.Namespace }}.svc.cluster.local:9005/api/"
-  ACCESS_CONTROL_BASE_URL: "http://accesscontrol-service.{{ .Release.Namespace }}.svc.cluster.local:9006/api/"
+  ACCESS_CONTROL_BASE_URL: "http://access-control.{{ .Release.Namespace }}.svc.cluster.local:9006/api/"
   ACCESS_CONTROL_ENABLED: "true"
   MOCK_ACCESS_CONTROL_SERVICE: "false"
   MEMORY: {{ .Values.java.memory | quote }}

@@ -4,7 +4,7 @@ kind: Ingress
 metadata:
   name: nextgen-ce
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /ccm/api
+    nginx.ingress.kubernetes.io/rewrite-target: /ccm/api/$2
 spec:
   ingressClassName: {{ .Values.global.ingress.className | quote }}
   rules:
@@ -15,7 +15,7 @@ spec:
                 name: nextgen-ce
                 port:
                   number: {{ .Values.service.port }}
-            path: /ccm/api
+            path: /ccm/api(/|$)(.*)
             pathType: ImplementationSpecific
     {{- range .Values.global.ingress.hosts }}
       host: {{ . | quote }}

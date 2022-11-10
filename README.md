@@ -1,6 +1,6 @@
 # nextgen-ce
 
-![Version: 0.1.11](https://img.shields.io/badge/Version-0.1.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.773.0](https://img.shields.io/badge/AppVersion-1.773.0-informational?style=flat-square)
+![Version: 0.1.14](https://img.shields.io/badge/Version-0.1.14-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.773.0](https://img.shields.io/badge/AppVersion-1.773.0-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -15,7 +15,7 @@ A Helm chart for Kubernetes
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| CE_AWS_TEMPLATE_URL | string | `"dummy"` |  |
+| GCP_PROJECT_ID | string | `"placeHolder"` |  |
 | affinity | object | `{}` |  |
 | autoscaling.enabled | bool | `false` |  |
 | autoscaling.maxReplicas | int | `2` |  |
@@ -26,6 +26,8 @@ A Helm chart for Kubernetes
 | awsSecret.AWS_DESTINATION_BUCKET | string | `""` |  |
 | awsSecret.AWS_SECRET_KEY | string | `""` |  |
 | awsSecret.AWS_TEMPLATE_LINK | string | `""` |  |
+| awsSecret.CE_AWS_TEMPLATE_URL | string | `""` |  |
+| ceng-gcp-credentials | string | `""` |  |
 | fullnameOverride | string | `""` |  |
 | global.ingress.className | string | `"harness"` |  |
 | global.ingress.enabled | bool | `false` |  |

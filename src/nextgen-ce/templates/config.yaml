@@ -9,7 +9,6 @@ data:
   MANAGER_AUTHORITY: "harness-manager:9879"
   MANAGER_CLIENT_BASEURL: "http://harness-manager.{{ .Release.Namespace }}.svc.cluster.local:9090/"
   NG_MANAGER_CLIENT_BASEURL: "http://ng-manager.{{ .Release.Namespace }}.svc.cluster.local:7090/"
-  CE_AWS_TEMPLATE_URL: {{.Values.CE_AWS_TEMPLATE_URL | quote}} ## TODO
   MANAGER_URL: "http://harness-manager.{{ .Release.Namespace }}.svc.cluster.local:9090/"
   DEPLOY_MODE: "KUBERNETES_ONPREM"
   CE_NEXTGEN_PORT: {{ .Values.service.port | quote}}
@@ -19,12 +18,12 @@ data:
   EVENTS_FRAMEWORK_REDIS_SENTINELS: "redis://redis-sentinel-harness-announce-0.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-1.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-2.{{ .Release.Namespace }}:26379"
   EVENTS_FRAMEWORK_ENV_NAMESPACE: {{ .Release.Namespace }}
   EVENTS_FRAMEWORK_REDIS_SSL_ENABLED: "false"
-  GOOGLE_CREDENTIALS_PATH: "/opt/harness/svc/ceng_gcp_credentials.json" ##TODO
-  GOOGLE_APPLICATION_CREDENTIALS: "/opt/harness/svc/ceng_gcp_credentials.json" #TODO
-  CE_GCP_CREDENTIALS_PATH: "/opt/harness/svc/ceng_gcp_credentials.json" #TODO
+  GOOGLE_CREDENTIALS_PATH: "/opt/harness/svc/ceng_gcp_credentials.json"
+  GOOGLE_APPLICATION_CREDENTIALS: "/opt/harness/svc/ceng_gcp_credentials.json"
+  CE_GCP_CREDENTIALS_PATH: "/opt/harness/svc/ceng_gcp_credentials.json"
   STACK_DRIVER_LOGGING_ENABLED: "false"
-  EVENTS_MONGO_INDEX_MANAGER_MODE: "MANUAL" ##TODO
-  GCP_PROJECT_ID: "ce-prod-274307" ##TODO
+  EVENTS_MONGO_INDEX_MANAGER_MODE: "MANUAL"
+  GCP_PROJECT_ID: {{ .Values.GCP_PROJECT_ID  | quote}}
   AZURE_APP_CLIENT_ID: "0211763d-24fb-4d63-865d-92f86f77e908" ##TODO
   AZURE_ENABLE_FILE_CHECK_AT_SOURCE: "true"
   AWS_GOV_CLOUD_ACCOUNT_ID: "147449478367" #TODO

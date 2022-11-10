@@ -57,6 +57,7 @@ awsSecret:
   AWS_ACCOUNT_ID: ""
   AWS_DESTINATION_BUCKET: ""
   AWS_TEMPLATE_LINK: ""
+  CE_AWS_TEMPLATE_URL: ""
 
 ceng-gcp-credentials: ""
 
@@ -94,7 +95,7 @@ tolerations: []
 
 affinity: {}
 
-CE_AWS_TEMPLATE_URL: dummy
+GCP_PROJECT_ID: "placeHolder"
 
 resources:
   limits:

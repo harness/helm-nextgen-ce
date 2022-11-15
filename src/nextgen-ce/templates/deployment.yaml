@@ -24,6 +24,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        app: nextgen-ce
         {{- include "nextgen-ce.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
